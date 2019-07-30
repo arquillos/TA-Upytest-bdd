@@ -8,6 +8,11 @@ def test_add():
     pass
 
 
+@scenario('../features/cucumbers.feature', 'Remove cucumbers from a basket')
+def test_remove():
+    pass
+
+
 @given("the basket has 2 cucumbers")
 def basket():
     return CucumberBasket(initial_count=2)
@@ -25,12 +30,12 @@ def basket_has_total(basket):
 
 @given("the basket has 4 cucumbers")
 def basket_remove():
-    return CucumberBasket(4)
+    return CucumberBasket(initial_count=4)
 
 
 @when("3 cucumbers are removed from the basket")
 def remove_cucumbers(basket_remove):
-    basket_remove(3)
+    basket_remove.remove(3)
 
 
 @then("the basket contains 1 cucumber")
