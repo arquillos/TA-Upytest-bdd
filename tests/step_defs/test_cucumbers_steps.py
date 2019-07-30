@@ -21,3 +21,18 @@ def add_cucumbers(basket):
 @then("the basket contains 6 cucumbers")
 def basket_has_total(basket):
     assert basket.count == 6
+
+
+@given("the basket has 4 cucumbers")
+def basket_remove():
+    return CucumberBasket(4)
+
+
+@when("3 cucumbers are removed from the basket")
+def remove_cucumbers(basket_remove):
+    basket_remove(3)
+
+
+@then("the basket contains 1 cucumber")
+def basket_removed(basket_remove):
+    assert basket_remove.count == 1
