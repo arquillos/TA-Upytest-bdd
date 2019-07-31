@@ -1,43 +1,39 @@
-from pytest_bdd import scenario, given, when, then
+from pytest_bdd import scenarios, given, when, then, parsers
 
 from cucumbers import CucumberBasket
 
 
-@scenario('../features/cucumbers.feature', 'Add cucumbers to a basket')
-def test_add():
-    pass
+scenarios('../features/cucumbers.feature')
+# @scenario('../features/cucumbers.feature', 'Add cucumbers to a basket')
+# def test_add():
+#     pass
+#
+#
+# @scenario('../features/cucumbers.feature', 'Remove cucumbers from a basket')
+# def test_remove():
+#     pass
 
 
-@scenario('../features/cucumbers.feature', 'Remove cucumbers from a basket')
-def test_remove():
-    pass
+EXTRA_TYPES = {
+    'Number': int
+}
 
 
-@given("the basket has 2 cucumbers")
-def basket():
-    return CucumberBasket(initial_count=2)
+@given(parsers.cfparse('the basket has "{initial:Number}" cucumbers', EXTRA_TYPES))
+def basket(initial):
+    return CucumberBasket(initial_count=initial)
 
 
-@when("4 cucumbers are added to the basket")
-def add_cucumbers(basket):
-    basket.add(4)
+@when(parsers.cfparse('"{some:Number}" cucumbers are added to the basket', EXTRA_TYPES))
+def add_cucumbers(basket, some):
+    basket.add(some)
 
 
-@then("the basket contains 6 cucumbers")
-def basket_has_total(basket):
-    assert basket.count == 6
+@then(parsers.cfparse('the basket contains "{total:Number}" cucumbers', EXTRA_TYPES))
+def basket_has_total(basket, total):
+    assert basket.count == total
 
 
-@given("the basket has 4 cucumbers")
-def basket_remove():
-    return CucumberBasket(initial_count=4)
-
-
-@when("3 cucumbers are removed from the basket")
-def remove_cucumbers(basket_remove):
-    basket_remove.remove(3)
-
-
-@then("the basket contains 1 cucumber")
-def basket_removed(basket_remove):
-    assert basket_remove.count == 1
+@when(parsers.cfparse('"{some:Number}" cucumbers are removed from the basket', EXTRA_TYPES))
+def remove_cucumbers(basket, some):
+    basket.remove(some)
