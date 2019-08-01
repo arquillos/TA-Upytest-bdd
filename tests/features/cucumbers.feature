@@ -3,10 +3,17 @@ Feature: Cucumber Basket
     I want to carry cucumbers in a basket,
     So that I don't drop them all.
 
-    Scenario: Add cucumbers to a basket
-        Given the basket has "2" cucumbers
-        When "4" cucumbers are added to the basket
-        Then the basket contains "6" cucumbers
+    Scenario Outline: Add cucumbers to a basket
+        Given the basket has "<initial>" cucumbers
+        When "<some>" cucumbers are added to the basket
+        Then the basket contains "<total>" cucumbers
+
+        Examples: Amounts
+            | initial   | some  | total |
+            | 1         | 2     | 3     |
+            | 2         | 3     | 5     |
+            | 0         | 1     | 1     |
+            | 0         | 0     | 0     |
 
     Scenario: Remove cucumbers from a basket
         Given the basket has "5" cucumbers
