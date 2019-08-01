@@ -4,16 +4,9 @@ Feature: Cucumber Basket
     So that I don't drop them all.
 
     Scenario Outline: Add cucumbers to a basket
-        Given the basket has "<initial>" cucumbers
-        When "<some>" cucumbers are added to the basket
-        Then the basket contains "<total>" cucumbers
-
-        Examples: Amounts
-            | initial   | some  | total |
-            | 1         | 2     | 3     |
-            | 2         | 3     | 5     |
-            | 0         | 1     | 1     |
-            | 0         | 0     | 0     |
+        Given the basket has <initial> cucumbers
+        When <some> cucumbers are added to the basket
+        Then the basket contains <total> cucumbers
 
     Scenario: Remove cucumbers from a basket
         Given the basket has "5" cucumbers
