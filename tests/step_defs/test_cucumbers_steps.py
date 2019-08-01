@@ -8,12 +8,6 @@ EXTRA_TYPES = {
     'Number': int
 }
 
-CONVERTERS = {
-    'initial': int,
-    'some': int,
-    'total': int,
-}
-
 
 @pytest.mark.parametrize(
     ['initial', 'some', 'total'],
