@@ -3,7 +3,6 @@ from pytest_bdd import scenarios, given, when, then, parsers
 from cucumbers import CucumberBasket
 
 
-
 EXTRA_TYPES = {
     'Number': int
 }
