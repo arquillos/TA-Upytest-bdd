@@ -2,9 +2,6 @@ import requests
 
 from pytest_bdd import scenarios, given, then, parsers
 
-# Shared variables
-DUCKDUCKGO_API = 'https://api.duckduckgo.com/'
-
 # Scenarios
 scenarios('../features/service.feature', example_converters=dict(phrase=str))
 
@@ -12,8 +9,10 @@ scenarios('../features/service.feature', example_converters=dict(phrase=str))
 # Given steps
 @given('the DuckDuckGo APU is queried with "<phrase>"')
 def ddg_response(phrase):
+    duckduckgo_api = 'https://api.duckduckgo.com/'
+
     params = {'q': phrase, 'format': 'json'}
-    response = requests.get(DUCKDUCKGO_API, params)
+    response = requests.get(duckduckgo_api, params)
     return response
 
 
